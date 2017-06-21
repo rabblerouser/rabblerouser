@@ -1,0 +1,11 @@
+# A "task"-style container that runs database migrations.  This can be run
+# in the production environment as `rake db:migrate` to apply database
+# migrations during deploys.
+
+version: "2"
+services:
+
+  rake:
+    image: "faraday/rails_hello"
+    build: "https://github.com/faradayio/rails_hello.git"
+    entrypoint: ["rake"]
