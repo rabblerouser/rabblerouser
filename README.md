@@ -26,6 +26,7 @@ From this repository, run:
 cage pull
 cage up
 cage run seed
+cage restart backend #TODO: Make it so this is not required
 ```
 
 This will pull down the latest Docker images for the project, start up all the various services, and then seed the app
@@ -48,15 +49,15 @@ Let's make a small change to the UI and see the result.
 Start with this:
 
 ```sh
-cage source mount frontend
-cage exec frontend npm install
+cage source mount core
+cage run core npm install
 cage up
 ```
 
-The first command will clone the [`core`](https://github.com/rabblerouser/core) application, which is where the frontend
-code currently lives. It also tells cage that you'd like to run this app from source, rather than just using a pre-built
-Docker image. The second command installs all of the frontend's dependencies, so that we can build and run the frontend
-locally. And the final one just tells cage to bring everything back up with the changes we made.
+The first command will clone the [`core`](https://github.com/rabblerouser/core) application, so we can work on it. It
+also tells cage that you'd like to run this app from source, rather than just using a pre-built Docker image.
+The second command installs all of the core app's dependencies, so that we can build and run it locally.
+The final one just tells cage to bring everything back up with the changes we made.
 
 ### Make a change
 
