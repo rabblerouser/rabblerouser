@@ -1,7 +1,5 @@
 # Rabble Rouser
 
-**Work in progress: Nothing here actually works yet**
-
 This is the best place to get started developing code for Rabble Rouser. As the project consists of many small components,
 the code is spread across lots of [repositories](https://github.com/rabblerouser). Rather than making you clone them all
 and install their dependencies individually before you can even get started, this repository contains a [Cage](http://cage.faraday.io)
