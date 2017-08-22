@@ -1,0 +1,25 @@
+version: "2"
+services:
+  core:
+    image: rabblerouser/core
+    build: "git@github.com:rabblerouser/core.git"
+    ports:
+      - "3000:3000"
+      - "8080:8080"
+    external_links:
+      - "s3:rr-event-archive.s3"
+    environment:
+      LISTENER_AUTH_TOKEN: secret
+    command: npm run dev
+    labels:
+      io.fdy.cage.srcdir: "/app"
+      io.fdy.cage.test: "npm test"
+  core-forwarder:
+    image: rabblerouser/event-forwarder
+    build: "git@github.com:rabblerouser/event-forwarder.git"
+    environment:
+      LISTENER_ENDPOINT: http://core:3000/events
+      LISTENER_AUTH_TOKEN: secret
+    labels:
+      io.fdy.cage.srcdir: "/app"
+      io.fdy.cage.test: "npm test"

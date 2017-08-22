@@ -1,0 +1,2 @@
+# `placeholder` means it get started before all the service pods
+pod_type: "placeholder"

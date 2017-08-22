@@ -1,0 +1,2 @@
+# `task` means it's not a long-running service, but an on-demand command
+pod_type: "task"
