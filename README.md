@@ -21,16 +21,17 @@ team members.
 From this repository, run:
 
 ```sh
+#1: Pull down the latest pre-built Docker images for the project
 cage pull
+#2: Start up all the microservices and dependencies
 cage up
+#3: Seed the app with the minimum data it needs to work
 cage run seed
-cage restart backend #TODO: Make it so this is not required
+#4: Restart the core app so that it sees the seed data. TODO: Eliminate this step
+cage restart core
 ```
 
-This will pull down the latest Docker images for the project, start up all the various services, and then seed the app
-with the minimum data needed to get started.
-
-## Test it out
+## Try it out!
 
 1. Open up your browser and head to http://localhost:8080
 2. Register a new member - make sure you see a success message
@@ -38,32 +39,28 @@ with the minimum data needed to get started.
     - Email: `superadmin@rabblerouser.team`
     - Password: `password1234`
 
-## Developing an application
+## Making your first code change
 
 Let's make a small change to the UI and see the result.
 
-### Check out some source code
-
-Start with this:
+### Check out some source code and mount it
 
 ```sh
+#1. Clone the source code for the core app, and tell Cage to 'mount' it
 cage source mount core
+#2. Install all the library dependencies of this app
 cage run core npm install
+#3. Restart the container in source mode, rather than just as a pre-built image
 cage up
 ```
 
-The first command will clone the [`core`](https://github.com/rabblerouser/core) application, so we can work on it. It
-also tells cage that you'd like to run this app from source, rather than just using a pre-built Docker image.
-The second command installs all of the core app's dependencies, so that we can build and run it locally.
-The final one just tells cage to bring everything back up with the changes we made.
-
 ### Make a change
 
-You can make any visible change you like here. Perhaps open up the file `frontend/src/signup/components/DetailsForm.js`
+You can make any visible change you like here. Perhaps open up the file `./src/core/frontend/src/signup/components/DetailsForm.js`
 and change one of the field labels to something different. Once you save the file, the frontend will automatically
 rebuild itself, the page will refresh, and you should see your changes!
 
-Note: You'll find the source code cloned into `./src/core/`.
+Note: Any other services you mount will be cloned into `./src/<app-name>/`.
 
 ## Putting things back
 
@@ -82,20 +79,20 @@ inside. For example:
 ```sh
 cage source mount core
 cage shell core
-# You'll now have a new session, inside the docker container, with the source mounted from your host machine
+# You'll now have a new shell, inside the docker container, with the source code mounted from your host machine
 cd frontend
 npm test
 ```
 
-This can be used to run any other kind of development and debugging tasks, keeping everything isolated inside the Docker
-container.
+This can be used to run any other kind of development and debugging tasks, while giving each application a totally
+isolated development environment.
 
 ## Other useful commands
 
 These cage commands may come in handy while developing:
 
 - `cage status`: see the status of all services in the project
-- `cage logs -f <service-name>`: tail the logs of the given application or pod
+- `cage logs -f <service-or-pod-name>`: tail the logs of the given application or pod
 - `cage`: Run cage with no arguments to see everything it can do!
 
 ## TODO
