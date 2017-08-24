@@ -32,9 +32,9 @@ with the minimum data needed to get started.
 
 ## Test it out
 
-1. Open up your browser and head to http://localhost:3000
+1. Open up your browser and head to http://localhost:8080
 2. Register a new member - make sure you see a success message
-3. Head to http://localhost:3000/dashboard and log in - you should see your newly registered member
+3. Head to http://localhost:8080/dashboard and log in - you should see your newly registered member
     - Email: `superadmin@rabblerouser.team`
     - Password: `password1234`
 
@@ -59,11 +59,11 @@ The final one just tells cage to bring everything back up with the changes we ma
 
 ### Make a change
 
-You can make any visible change you like here. Perhaps search the repo for one of the input labels and change it to say
-something different (e.g. change 'Additional information' to 'Extra info'). Once you save the file, the frontend will
-automatically rebuild itself, the page will refresh, and you should see your changes!
+You can make any visible change you like here. Perhaps open up the file `frontend/src/signup/components/DetailsForm.js`
+and change one of the field labels to something different. Once you save the file, the frontend will automatically
+rebuild itself, the page will refresh, and you should see your changes!
 
-Note: You'll find the source code cloned into `./src/core/frontend`.
+Note: You'll find the source code cloned into `./src/core/`.
 
 ## Putting things back
 
@@ -71,30 +71,43 @@ If you're no longer working on a service, you might want to unmount the source c
 image mode. It's probably also a good idea to pull the latest image:
 
 ```sh
-cage source unmount frontend
-cage pull frontend
+cage source unmount core
+cage pull core
 ```
 
-## Digging deeper
+## Running tests
+The best way to run the tests of a particular project is to shell into the running container and run the tests from
+inside. For example:
+
+```sh
+cage source mount core
+cage shell core
+# You'll now have a new session, inside the docker container, with the source mounted from your host machine
+cd frontend
+npm test
+```
+
+This can be used to run any other kind of development and debugging tasks, keeping everything isolated inside the Docker
+container.
+
+## Other useful commands
 
 These cage commands may come in handy while developing:
 
 - `cage status`: see the status of all services in the project
-- `cage logs -f <service-name>`: tail the logs of the given application, e.g. `frontend`
-- `cage shell <service-name>`: Get an interactive shell inside the running container. Useful for deeper diagnosis of
-  problems, or for running test suites or other developer tools.
+- `cage logs -f <service-name>`: tail the logs of the given application or pod
 - `cage`: Run cage with no arguments to see everything it can do!
 
 ## TODO
-- [ ] common
-  - [ ] kinesis
-  - [ ] S3
-  - [ ] archiver
-- [ ] core
-  - [ ] backend
-  - [ ] frontend
-  - [ ] forwarder
-  - [ ] seeder
+- [x] common
+  - [x] kinesis
+  - [x] S3
+  - [x] archiver
+- [x] core
+  - [x] backend
+  - [x] frontend
+  - [x] forwarder
+  - [x] seeder
 - [ ] mailer
   - [ ] app
   - [ ] forwarder
