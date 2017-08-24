@@ -109,9 +109,9 @@ These cage commands may come in handy while developing:
   - [x] frontend
   - [x] forwarder
   - [x] seeder
-- [ ] mailer
-  - [ ] app
-  - [ ] forwarder
+- [x] mailer
+  - [x] app
+  - [x] forwarder
 - [ ] group-mailer
   - [ ] app
   - [ ] forwarder
