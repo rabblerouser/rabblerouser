@@ -4,3 +4,7 @@ services:
     image: instructure/kinesalite
   s3:
     image: lphoward/fake-s3
+  ses:
+    image: camjackson/aws-ses-local
+    volumes:
+      - ../sent-mail:/aws-ses-local/output

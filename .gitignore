@@ -1,3 +1,4 @@
 /.cage/
 /src/
 /config/secrets.yml
+/sent-mail

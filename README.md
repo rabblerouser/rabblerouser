@@ -102,6 +102,7 @@ These cage commands may come in handy while developing:
 - [x] common
   - [x] kinesis
   - [x] S3
+  - [x] SES
   - [x] archiver
 - [x] core
   - [x] backend

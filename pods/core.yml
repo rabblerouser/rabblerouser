@@ -9,12 +9,15 @@ services:
     external_links:
       - "s3:rr-event-archive.s3"
     environment:
+      # PORT: 3000 TODO: This would affect both the backend and frontend, which would cause conflicts.
+      # Once we split the backend and frontend into separate containers, they can be portified independently.
+      # For now the ports will default to 3000/8080 anyway, so it's OK.
       LISTENER_AUTH_TOKEN: secret
     command: npm run dev
     labels:
       io.fdy.cage.srcdir: "/app"
       io.fdy.cage.test: "npm test"
-  core-forwarder:
+  core-event-forwarder:
     image: rabblerouser/event-forwarder
     build: "git@github.com:rabblerouser/event-forwarder.git"
     environment:
