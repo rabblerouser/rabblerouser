@@ -109,9 +109,9 @@ These cage commands may come in handy while developing:
 - [x] mailer
   - [x] app
   - [x] forwarder
-- [ ] group-mailer
-  - [ ] app
-  - [ ] forwarder
+- [x] group-mailer
+  - [x] app
+  - [x] forwarder
 - [ ] group-mail-receiver
   - [ ] lambda
   - [ ] something something SES

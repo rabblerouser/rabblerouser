@@ -1,0 +1,23 @@
+version: "2"
+services:
+  group-mailer:
+    image: rabblerouser/group-mailer
+    build: "git@github.com:rabblerouser/group-mailer.git"
+    ports:
+      - "3002:3002"
+    environment:
+      LISTENER_AUTH_TOKEN: secret
+      PORT: 3002
+    command: npm run dev
+    labels:
+      io.fdy.cage.srcdir: "/app"
+      io.fdy.cage.test: "npm test"
+  group-mailer-event-forwarder:
+    image: rabblerouser/event-forwarder
+    build: "git@github.com:rabblerouser/event-forwarder.git"
+    environment:
+      LISTENER_ENDPOINT: http://group-mailer:3002/events
+      LISTENER_AUTH_TOKEN: secret
+    labels:
+      io.fdy.cage.srcdir: "/app"
+      io.fdy.cage.test: "npm test"
