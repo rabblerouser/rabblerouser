@@ -5,6 +5,8 @@ services:
     build: "git@github.com:rabblerouser/mailer.git"
     ports:
       - "3001:3001"
+    external_links:
+      - "s3:email-bucket.s3"
     environment:
       LISTENER_AUTH_TOKEN: secret
     command: npm run dev
