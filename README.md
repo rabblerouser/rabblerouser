@@ -95,6 +95,16 @@ These cage commands may come in handy while developing:
 - `cage logs -f <service-or-pod-name>`: tail the logs of the given application or pod
 - `cage`: Run cage with no arguments to see everything it can do!
 
+## Using the local S3 mocks
+
+You can use the local S3 mocks similar to the real S3 services, as long as you remember to set the endpoint. For
+example, to create a local S3 bucket and put an object in it:
+
+```sh
+aws --endpoint-url='http://localhost:4569' s3api create-bucket --bucket some-bucket-name
+aws --endpoint-url='http://localhost:4569' s3api put-object --bucket email-bucket --key some-object --body path/to/file.txt
+```
+
 ## TODO
 - [x] common
   - [x] kinesis

@@ -5,6 +5,9 @@ services:
     build: "git@github.com:rabblerouser/group-mailer.git"
     ports:
       - "3002:3002"
+    external_links:
+      - "s3:rr-event-archive.s3"
+      - "s3:email-bucket.s3"
     environment:
       LISTENER_AUTH_TOKEN: secret
       PORT: 3002
