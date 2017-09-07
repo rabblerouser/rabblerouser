@@ -6,6 +6,8 @@ services:
     image: lphoward/fake-s3
     ports:
       - '4569:4569'
+    volumes:
+      - ../s3-data:/fakes3_root
   ses:
     image: camjackson/aws-ses-local
     volumes:
