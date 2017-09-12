@@ -9,6 +9,7 @@ services:
       - "s3:email-bucket.s3"
     environment:
       LISTENER_AUTH_TOKEN: secret
+      PORT: 3001
     command: npm run dev
     labels:
       io.fdy.cage.srcdir: "/app"
