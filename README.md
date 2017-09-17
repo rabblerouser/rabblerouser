@@ -1,10 +1,10 @@
 # Rabble Rouser
 
-This is the best place to get started developing code for Rabble Rouser. As the project consists of many small components,
-the code is spread across lots of [repositories](https://github.com/rabblerouser). Rather than making you clone them all
-and install their dependencies individually before you can even get started, this repository contains a [Cage](http://cage.faraday.io)
-project to help make things easier. Cage allows you to start by running everything from pre-built Docker images, and
-then check out the source code for only the components you want to make changes to.
+Rabble Rouser consists of many small components, and the code is spread across lots of [repositories](https://github.com/rabblerouser).
+Rather than making you clone them all and install their dependencies individually before you can even get started, this
+repository contains a [Cage](http://cage.faraday.io) project to help make things easier. Cage allows you to start by
+running everything from pre-built Docker images, and then check out the source code for only the components you want to
+make changes to.
 
 It is our hope that this will make it fairly painless to get started with Rabble Rouser. If there is any way we can help
 make it a better experience for you, please let us know by opening an issue on this repository, or talking to one of the
@@ -94,6 +94,14 @@ These cage commands may come in handy while developing:
 - `cage status`: see the status of all services in the project
 - `cage logs -f <service-or-pod-name>`: tail the logs of the given application or pod
 - `cage`: Run cage with no arguments to see everything it can do!
+
+## Enabling shell completion for cage
+
+Cage can autogenerate a script that enables auto-completion of its own commands. Run this for instructions:
+
+```sh
+cage generate completion --help
+```
 
 ## Using the local AWS mocks
 
