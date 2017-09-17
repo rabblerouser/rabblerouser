@@ -23,13 +23,11 @@ From this repository, run:
 ```sh
 #1: Pull down the latest pre-built Docker images for the project
 cage pull
-#2: Start up all the microservices and dependencies
-cage up
-#3: Seed the app with the minimum data it needs to work
-cage run seed
-#4: Restart the core app so that it sees the seed data. TODO: Eliminate this step
-cage restart core
+#2: Start up all the microservices and dependencies, and seed initial data
+cage up --init
 ```
+
+Note that the `--init` flag is only needed on first run, unless you delete the `s3-data` directory.
 
 ## Try it out!
 

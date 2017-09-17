@@ -12,3 +12,12 @@ services:
     image: camjackson/aws-ses-local
     volumes:
       - ../sent-mail:/aws-ses-local/output
+  event-archiver:
+    # This kinda doesn't belong here, but it needs to be up before the init script runs, so... ¯\_(ツ)_/¯
+    image: rabblerouser/event-archiver
+    build: "git@github.com:rabblerouser/event-archiver.git"
+    external_links:
+      - "s3:rr-event-archive.s3"
+    labels:
+      io.fdy.cage.srcdir: "/app"
+      io.fdy.cage.test: "npm test"

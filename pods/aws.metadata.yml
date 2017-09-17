@@ -1,2 +1,6 @@
-# `placeholder` means it get started before all the service pods
+# `placeholder` means this pod gets started before all the service pods
 pod_type: "placeholder"
+
+# When doing `cage up --init`, it will automatically do `cage run <x>` on each of these
+run_on_init:
+  - ["core", "npm", "--prefix", "backend", "run", "seed"]
