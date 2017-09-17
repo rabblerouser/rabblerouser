@@ -104,15 +104,16 @@ cage generate completion --help
 ## Using the local AWS mocks
 
 You can use the local AWS mocks similar to the real AWS services, as long as you remember to set the endpoint. For
-example, to create a local S3 bucket and put an object in it:
+example, to list the buckets that exist locally:
 
 ```sh
-aws --endpoint-url='http://localhost:4569' s3api create-bucket --bucket email-bucket
-aws --endpoint-url='http://localhost:4569' s3api put-object --bucket email-bucket --key some-object --body src/__tests__/fixtures/mimeFile.txt
+aws --endpoint-url='http://localhost:4569' s3api list-buckets
 ```
 
-If it worked, you should then be able to retrieve the same data with the appropriate S3 commands. For convenience, the
-underlying S3 data is also exposed in the `s3-data` directory, which allows for easy viewing and editing of S3 objects.
+For convenience, some of the AWS mocks expose some data to your host machine:
+
+ - `s3-data/`: the data store of the local S3 mock. Useful for tweaking bucket contents during development.
+ - `sent-mail`: the resulting output of successful requests to the local SES mock. Useful for verification purposes.
 
 ## TODO
 - [x] common
