@@ -3,3 +3,4 @@
 /config/secrets.yml
 /sent-mail
 /s3-data
+/kinesis-data

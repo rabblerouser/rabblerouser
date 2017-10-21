@@ -2,6 +2,10 @@ version: "2"
 services:
   kinesis:
     image: instructure/kinesalite
+    ports:
+      - '4567:4567'
+    volumes:
+      - ../kinesis-data:/var/lib/kinesalite
   s3:
     image: camjackson/fake-s3
     ports:
