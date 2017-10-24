@@ -10,6 +10,7 @@ services:
       - "s3:email-bucket.s3"
     environment:
       LISTENER_AUTH_TOKEN: secret
+      GROUP_MAIL_RECEIVER_AUTH_TOKEN: secret
       PORT: 3002
     command: npm run dev
     labels:
