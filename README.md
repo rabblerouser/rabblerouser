@@ -18,16 +18,14 @@ team members.
 
 ## Run the application
 
-From this repository, run:
+From this repository, just run this one command!
 
 ```sh
-#1: Pull down the latest pre-built Docker images for the project
-cage pull
-#2: Start up all the microservices and dependencies, and seed initial data
 cage up --init
 ```
 
-Note that the `--init` flag is only needed on first run, unless you delete the `s3-data` directory.
+This will start up all the microservices and dependencies, and seed initial data. Note that you only need the `--init`
+flag on the first run, unless you manually clean up the data directories.
 
 ## Try it out!
 
@@ -113,6 +111,7 @@ aws --endpoint-url='http://localhost:4569' s3api list-buckets
 For convenience, some of the AWS mocks expose some data to your host machine:
 
  - `s3-data/`: the data store of the local S3 mock. Useful for tweaking bucket contents during development.
+ - `kinesis-data`: the data store of the local kinesis mock.
  - `sent-mail`: the resulting output of successful requests to the local SES mock. Useful for verification purposes.
 
 ## TODO
