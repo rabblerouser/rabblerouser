@@ -14,8 +14,13 @@ services:
       - ../s3-data:/fakes3_root
   ses:
     image: camjackson/aws-ses-local
+    build: "git@github.com:camjackson/aws-ses-local"
+    command: ./node_modules/.bin/babel-node src/server.js
     volumes:
       - ../sent-mail:/aws-ses-local/output
+    labels:
+      io.fdy.cage.srcdir: "/aws-ses-local"
+      io.fdy.cage.test: "npm test"
   event-archiver:
     # This kinda doesn't belong here, but it needs to be up before the init script runs, so... ¯\_(ツ)_/¯
     image: rabblerouser/event-archiver
