@@ -10,10 +10,10 @@ services:
     environment:
       LISTENER_AUTH_TOKEN: secret
       PORT: 3001
-    command: npm run dev
+    command: yarn dev
     labels:
       io.fdy.cage.srcdir: "/app"
-      io.fdy.cage.test: "npm test"
+      io.fdy.cage.test: "yarn test"
   mailer-event-forwarder:
     image: rabblerouser/event-forwarder
     build: "git@github.com:rabblerouser/event-forwarder.git"
@@ -22,4 +22,4 @@ services:
       LISTENER_AUTH_TOKEN: secret
     labels:
       io.fdy.cage.srcdir: "/app"
-      io.fdy.cage.test: "npm test"
+      io.fdy.cage.test: "yarn test"
