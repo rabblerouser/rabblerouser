@@ -83,6 +83,18 @@ npm test
 This can be used to run any other kind of development and debugging tasks, while giving each application a totally
 isolated development environment.
 
+## Full email simulation
+For a fairly thorough end-to-end test of the system, after bringing up all the services, try running this:
+
+```sh
+cage run group-mail-receiver email-from-john
+```
+
+The group-mail-receiver lambda is integrated here as a "task pod" which means that rather than running in the background,
+it's a task that we can run manually whenever we need it. In this case, we're running a lambda which triggers a series
+of events ultimately leading to emails being sent (local only, no *actual* emails get sent here). If everything worked,
+you should be able to look inside the `sent-email` directory and see that an email was just sent successfully.
+
 ## Other useful commands
 
 These cage commands may come in handy while developing:
@@ -113,25 +125,3 @@ For convenience, some of the AWS mocks expose some data to your host machine:
  - `s3-data/`: the data store of the local S3 mock. Useful for tweaking bucket contents during development.
  - `kinesis-data`: the data store of the local kinesis mock.
  - `sent-mail`: the resulting output of successful requests to the local SES mock. Useful for verification purposes.
-
-## TODO
-- [x] common
-  - [x] kinesis
-  - [x] S3
-  - [x] SES
-  - [x] archiver
-- [x] core
-  - [x] backend
-  - [x] frontend
-  - [x] forwarder
-  - [x] seeder
-- [x] mailer
-  - [x] app
-  - [x] forwarder
-- [x] group-mailer
-  - [x] app
-  - [x] forwarder
-- [ ] group-mail-receiver
-  - [ ] lambda
-  - [ ] something something SES
-- [ ] Run all tests maybe?
