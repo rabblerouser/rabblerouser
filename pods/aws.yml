@@ -14,7 +14,7 @@ services:
       - ../s3-data:/fakes3_root
   ses:
     image: camjackson/aws-ses-local
-    build: "git@github.com:camjackson/aws-ses-local"
+    build: "git@github.com:camjackson/aws-ses-local.git"
     command: ./node_modules/.bin/babel-node src/server.js
     volumes:
       - ../sent-mail:/aws-ses-local/output

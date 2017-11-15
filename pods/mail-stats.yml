@@ -2,7 +2,7 @@ version: "2"
 services:
   mail-stats-frontend:
     image: rabblerouser/mail-stats-frontend
-    build: "git@github.com:rabblerouser/mail-stats.git"
+    build: "git@github.com:rabblerouser/mail-stats.git#:frontend"
     ports:
       - "8181:8181"
     environment:
@@ -10,12 +10,11 @@ services:
     command: yarn start
     labels:
       io.fdy.cage.srcdir: "/app"
-      io.fdy.cage.repo_subdir: "frontend"
       io.fdy.cage.test: "yarn test"
 
   mail-stats:
     image: rabblerouser/mail-stats
-    build: "git@github.com:rabblerouser/mail-stats.git"
+    build: "git@github.com:rabblerouser/mail-stats.git#:backend"
     ports:
       - "3003:3003"
     environment:
@@ -27,7 +26,6 @@ services:
     command: yarn dev
     labels:
       io.fdy.cage.srcdir: "/app"
-      io.fdy.cage.repo_subdir: "backend"
       io.fdy.cage.test: "yarn test"
 
   mail-stats-event-forwarder:
