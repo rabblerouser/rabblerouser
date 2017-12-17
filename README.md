@@ -14,7 +14,7 @@ team members.
 
 1. [Docker](https://store.docker.com/search?type=edition&offering=community)
 2. docker-compose: For most systems this is installed automatically with Docker.
-3. [Cage](http://cage.faraday.io/setup) (Windows users [see here](https://github.com/faradayio/cage/blob/master/WINDOWS.md))
+3. [Cage](http://cage.faraday.io/setup) >= v0.2.4 (Windows users [see here](https://github.com/faradayio/cage/blob/master/WINDOWS.md))
 
 ## Run the application
 
