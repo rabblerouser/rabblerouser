@@ -71,8 +71,8 @@ Let's make a small change to the UI and see the result.
 
 ### Check out some source code and mount it
 
-So far we haven't downloaded any Rabble Rouser source code. If we want to make a change, we'll need to download the
-source code, install the libraries that it uses, and restart the application:
+So far we haven't downloaded any Rabble Rouser source code yet. If we want to make a change to, for example, the 'core'
+application, we'll need to download its source, install its library dependencies, and restart Rabble Rouser:
 
 ```sh
 cage source mount core
@@ -83,15 +83,15 @@ cage up
 Now open http://localhost:8080 again in your browser, and make sure the registration form still loads. If it doesn't
 load, wait a minute and try again, as the application may still be compiling or starting up.
 
-> The first command tells Cage that we want to run that particular application from local source code. The first time
-you do this, it will automatically clone the source code for you. Next we need to install all of the dependencies
-locally before we can run the code - we can use `cage run <app_name> <command>` for one-off actions like this. The
-installation will happen inside a docker container, but through the magic of volume-mounting, they'll be written to your
-regular hard drive outside the container.
+> The first command tells Cage that we want to run that particular application from local source code. If you don't
+already have the code, then cage will clone it for you automatically! Next we need to install the app's dependencies -
+we can use `cage run <app_name> <command>` for one-off commands like this. The installation will run inside a docker
+container, but through the magic of volume-mounting, the dependencies will be written to your regular hard drive outside
+the container.
 
 > Mounting/unmounting does not modify containers that are already running, so you need to apply your changes by running
-the final command, restarting the container. The app will be running inside a docker container just like before, but now
-it's running from the source code on your hard drive, so we can start making changes!
+the final command, restarting the container. Now the app will be running inside a docker container just like before, but
+this time it's running from the source code on your hard drive, so we can start making changes!
 
 ### Make a change
 
@@ -103,8 +103,8 @@ file, the frontend will automatically rebuild itself, the browser page will refr
 ## Run the tests
 
 Whenever we make a change, we should make sure that the tests still pass as well. First we need to start a new terminal
-session (or 'shell') inside the application, and then we can run the tests from there. Once you're done, exit the shell
-to get back to where you started.
+session (or 'shell') *inside* the application, and then we can run the tests from there. Once you're done, exit the
+shell to get back to where you started.
 
 ```sh
 cage shell core
@@ -112,10 +112,10 @@ yarn test
 exit
 ```
 
-> Here we're getting a shell inside the running docker container. Something equivalent to `docker exec -it <container> sh`.
-Inside the container we have a fully isolated development environment which we can use for kind of development task such
-as running tests, linting or formatting code, managing application dependencies, etc. By doing all of this inside the
-container, we don't have to worry about e.g. making sure the right version of node.js is installed on everyone's
+> Here we're getting a shell inside the running container. Something equivalent to `docker exec -it core sh`. Inside the
+container we have a fully isolated development environment which we can use for all kinds of development tasks, such
+as running tests, linting or formatting code, managing application dependencies, etc. By doing all of this inside
+containers, we don't have to worry about e.g. making sure the right version of Node.js is installed on everyone's
 development machine.
 
 ## Putting things back
@@ -123,7 +123,7 @@ development machine.
 Earlier we used `cage source mount core` to download the source code, and also to tell Cage to switch the 'core'
 application into source mode. If we're not working on core any more, then it's a good idea to switch off source mode,
 putting our development environment back how it was at the start. We should also pull the latest published version of
-the application. After these commands we need to restart the application again for our changes to be applied:
+the application. Then we need to restart the application again for those commands to take effect:
 
 ```sh
 cage source unmount core
@@ -137,7 +137,7 @@ container next starts up. And `pull` simply pulls the latest version of the dock
 
 ## What's next?
 
-The above workflow should give you most of the commands needed to start contributing to Rabble Rouser. You're now able
+The above workflow should give you most of the commands needed to start contributing to Rabble Rouser! You're now able
 to run things locally, check out source code, make changes, and test them both manually and automatically. From here you
 might want to dig a bit deeper into one of the exsting applications, you could learn more about the development
 environment, or you could even try creating a new one! The next few subsections will cover each of these options.
@@ -145,8 +145,8 @@ environment, or you could even try creating a new one! The next few subsections 
 ### Contributing to an application
 
 The first step would be to find something to work on. Head to https://huboard.com/rabblerouser/core to find our backlog,
-and if you see something you want to tackle, leave a comment on the issue letting us know. Feel free to ask for help if
-you don't know where to get started.
+and if you see something you want to tackle, leave a comment on the issue letting us know. Please ask for help if you
+don't know where to get started!
 
 Once you find an application to work on, look at its own docs to see how to contribute. There should be instructions for
 installing its dependencies, running its tests, etc. If there aren't, then please raise an issue on GitHub so we can fix
@@ -185,18 +185,21 @@ While you've already learned the basics, there's still a lot more you can do.
 
 3. Using the local AWS mocks:
 
-  You can use the local AWS mocks similar to the real AWS services, as long as you remember to set the endpoint. For
+  You can use the local AWS mocks similarly to real AWS services, as long as you remember to set the endpoint. For
   example, to list the buckets that exist locally:
 
   ```sh
   aws --endpoint-url='http://localhost:4569' s3api list-buckets
   ```
 
-  For convenience, some of the AWS mocks expose some data to your host machine:
+  For convenience, some of the AWS mocks expose their data directly as files on your host machine. This is partly so
+  that their data persists even after you stop the services, and is also useful in other ways:
 
-   - `s3-data/`: the data store of the local S3 mock. Useful for tweaking bucket contents during development.
-   - `kinesis-data`: the data store of the local kinesis mock.
-   - `sent-mail`: the resulting output of successful requests to the local SES mock. Useful for verification purposes.
+  - `s3-data`: the data store of the local S3 mock. Useful for checking or tweaking bucket contents during development.
+  - `kinesis-data`: the data store of the local kinesis mock.
+  - `sent-mail`: successful requests to the local SES mock are logged here. Useful for manual end-to-end testing.
+
+  If you want to clear these out and start fresh, then just delete the directories.
 
 4. For more cage commands, run `cage --help`.
 
@@ -209,4 +212,4 @@ paste it. Then go through each of the fields and update the names, paths, URLs, 
 If you're building a new Node.js application and you're using the standard [base image](https://hub.docker.com/r/rabblerouser/node-base/),
 then Cage's source mounting feature should just work. If you're using something else, you'll need to make sure that the
 directories and commands of your source code and Docker image all line up. To learn more, read the [Cage docs](http://cage.faraday.io/),
-or try to reverse engineer how it works from our existing Node.js applications and images.
+or try to reverse engineer how it works from our existing Node.js applications and images, or ask the team for help.
