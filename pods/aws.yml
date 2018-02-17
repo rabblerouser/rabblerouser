@@ -20,7 +20,6 @@ services:
       - ../sent-mail:/aws-ses-local/output
     labels:
       io.fdy.cage.srcdir: "/aws-ses-local"
-      io.fdy.cage.test: "npm test"
   event-archiver:
     # This kinda doesn't belong here, but it needs to be up before the init script runs, so... ¯\_(ツ)_/¯
     image: rabblerouser/event-archiver
@@ -29,4 +28,4 @@ services:
       - "s3:rr-event-archive.s3"
     labels:
       io.fdy.cage.srcdir: "/app"
-      io.fdy.cage.test: "npm test"
+      io.fdy.cage.test: "yarn test"

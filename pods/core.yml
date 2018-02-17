@@ -13,10 +13,10 @@ services:
       # Once we split the backend and frontend into separate containers, they can be portified independently.
       # For now the ports will default to 3000/8080 anyway, so it's OK.
       LISTENER_AUTH_TOKEN: secret
-    command: npm run dev
+    command: yarn dev
     labels:
       io.fdy.cage.srcdir: "/app"
-      io.fdy.cage.test: "npm test"
+      io.fdy.cage.test: "yarn test"
   core-event-forwarder:
     image: rabblerouser/event-forwarder
     build: "git@github.com:rabblerouser/event-forwarder.git"
@@ -25,4 +25,4 @@ services:
       LISTENER_AUTH_TOKEN: secret
     labels:
       io.fdy.cage.srcdir: "/app"
-      io.fdy.cage.test: "npm test"
+      io.fdy.cage.test: "yarn test"
