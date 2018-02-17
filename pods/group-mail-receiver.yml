@@ -3,7 +3,9 @@ services:
   # This is a task pod. Run it like `cage run group-mail-receiver email-from-john`
   group-mail-receiver:
     image: rabblerouser/group-mail-receiver
-    build: "git@github.com:rabblerouser/group-mail-receiver.git"
+    build: "git@github.com:rabblerouser/group-mail-receiver.git#:lambda"
     environment:
       AUTH_TOKEN: secret
       FORWARD_TO_ENDPOINT: http://group-mailer:3002/mail
+    labels:
+      io.fdy.cage.srcdir: "/app"
