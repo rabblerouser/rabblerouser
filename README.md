@@ -135,6 +135,25 @@ cage up
 container next starts up. And `pull` simply pulls the latest version of the docker image from the docker hub. If you run
 `cage pull` without any application name, it will pull the latest images for everything.
 
+## Cleaning up
+
+Once we're all done, we can shut down the applications, and clean up any resources they used:
+
+```sh
+cage stop
+cage rm
+```
+
+This does *not* clear out the database, so next time you can start Rabble Rouser with just `cage up` (no `--init`), and
+all your data from last time will still be there. For more information on where this data is, and how to inspect or
+remove it, see the section below on the local AWS mocks.
+
+> The above commands are basically the same as the `stop` and `rm` commands of both Docker and docker-compose. See their
+docs for more information. One significant difference is that while `docker rm -f` will delete a running container in
+one step, so you don't have to stop it first, `cage rm -f` simply means "don't ask for confirmation". As of cage v0.2.4,
+the `rm` command will always ignore any containers that are still running, so you have to `stop` them first. You might
+like to create a shell alias for something like: `docker ps -aq | xargs docker rm -f`.
+
 ## What's next?
 
 The above workflow should give you most of the commands needed to start contributing to Rabble Rouser! You're now able
