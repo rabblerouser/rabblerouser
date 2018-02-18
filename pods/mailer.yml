@@ -14,6 +14,7 @@ services:
     labels:
       io.fdy.cage.srcdir: "/app"
       io.fdy.cage.test: "yarn test"
+      io.fdy.cage.lib.stream_client: "/app/node_modules/@rabblerouser/stream-client"
   mailer-event-forwarder:
     image: rabblerouser/event-forwarder
     build: "git@github.com:rabblerouser/event-forwarder.git"

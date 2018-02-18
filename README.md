@@ -220,7 +220,16 @@ While you've already learned the basics, there's still a lot more you can do.
 
   If you want to clear these out and start fresh, then just delete the directories.
 
-4. For more cage commands, run `cage --help`.
+4. Testing changes to libraries
+
+  If you are working on a library like `@rabblerouser/stream-client`, it can be source-mounted into containers as well!
+  This allows you to make changes to library code and test it locally in an integrated environment, just like the apps
+  themselves, without having to publish the library to a registry like npmjs.com. This is already configured for the
+  stream-client library, just do `cage source mount stream-client`, then `cage up` and it should work. However, you do
+  need to `cage restart` the application that after each change to the library code, because nodemon (which restarts our
+  applications automatically upon file changes), does not monitor the dependencies in the `node_modules` directory.
+
+5. For more cage commands, run `cage --help`.
 
 ### Adding a new application
 

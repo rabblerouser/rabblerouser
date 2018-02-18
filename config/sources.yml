@@ -1,0 +1,7 @@
+# By declaring @rabblerouser/stream-client as a library source here,
+# we can then refer to it from containers that use it. This allows us
+# to test changes to the library locally, inside the docker containers,
+# without having to publish the library to npmjs.com.
+
+stream_client:
+  context: "https://github.com/rabblerouser/stream-client.git"
