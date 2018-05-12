@@ -25,7 +25,7 @@ You need to install a couple of things first:
 First clone this project into a new directory:
 
 ```sh
-git clone git@github.com:camjackson/rabblerouser.git
+git clone git@github.com:rabblerouser/rabblerouser.git
 ```
 
 Then go into the project and start everything up with a single command! (It might take a while the very first time.)
