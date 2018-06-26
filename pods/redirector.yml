@@ -1,0 +1,10 @@
+version: "2"
+services:
+  redirector:
+    image: rabblerouser/redirector
+    build: "git@github.com:rabblerouser/redirector.git"
+    ports:
+      - "3004:3004"
+    environment:
+      PORT: 3004
+    command: yarn dev
